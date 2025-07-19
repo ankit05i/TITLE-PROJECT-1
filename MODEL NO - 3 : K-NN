@@ -1,0 +1,16 @@
+
+knn_classifier = KNeighborsClassifier()
+
+param_knn = {
+    'n_neighbors': range(1, 30),
+    'weights': ['uniform', 'distance'],
+    'algorithm': ['auto', 'ball_tree', 'kd_tree'],
+    'leaf_size': range(10, 50, 5)}
+
+grid_search_knn = GridSearchCV(knn_classifier, param_knn, cv=5)
+grid_search_knn.fit(X_train, y_train)
+
+grid_search_knn.best_params_
+best_gs_knn = grid_search_knn.best_estimator_
+print('Score on train data = ', round(best_gs_knn.score(X_train, y_train), 4))
+print('Score on test data = ', round(best_gs_knn.score(X_test, y_test), 4))
