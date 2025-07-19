@@ -1,0 +1,22 @@
+
+xgb_classifier = xgb.XGBClassifier(eval_metric='mlogloss')
+
+param_xgb = {
+    'n_estimators': [50, 100, 200],
+    'learning_rate': [0.1, 0.2],
+    'max_depth': [3, 5, 10],
+    'subsample': [0.8, 1.0],
+    'min_child_weight': [1, 3, 5]
+}
+
+
+grid_search__xgb = GridSearchCV(xgb_classifier, param_xgb, cv=5)
+
+grid_search__xgb.fit(X_train, y_train)
+
+grid_search__xgb.best_params_
+
+best_gs_xgb = grid_search__xgb.best_estimator_
+
+print('Score on train data = ', round(best_gs_xgb.score(X_train, y_train), 4))
+print('Score on test data = ', round(best_gs_xgb.score(X_test, y_test), 4))
