@@ -1,0 +1,25 @@
+fig, axes = plt.subplots(3, 2, figsize=(15, 12))
+
+sns.boxplot(x=df['Speed_Limit'], ax=axes[0, 0])
+axes[0, 0].set_title('Speed_Limit')
+
+sns.boxplot(x=df['Number_of_Vehicles'], ax=axes[0, 1])
+axes[0, 1].set_title('Number_of_Vehicles')
+
+sns.boxplot(x=df['Driver_Age'], ax=axes[1, 0])
+axes[1, 0].set_title('Driver_Age')
+
+sns.boxplot(x=df['Driver_Experience'], ax=axes[1, 1])
+axes[1, 1].set_title('Driver_Experience')
+
+sns.boxplot(x=df['Traffic_Density'], ax=axes[2, 0])
+axes[2, 0].set_title('Traffic_Density')
+
+fig.delaxes(axes[2, 1])
+
+plt.tight_layout()
+plt.show()
+
+cols = ['Speed_Limit', 'Number_of_Vehicles', 'Driver_Age', 'Driver_Experience']
+sns_plot = sns.pairplot(df[cols])
+sns_plot.savefig('pairplot.png')
