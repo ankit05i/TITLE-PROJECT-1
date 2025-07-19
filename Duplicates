@@ -1,0 +1,7 @@
+duplicates_count = df.duplicated().sum()
+print(f"Количество дубликатов: {duplicates_count}")
+
+df = df.drop_duplicates()
+
+duplicates_count1 = df.duplicated().sum()
+print(f"Количество дубликатов: {duplicates_count1}")
