@@ -1,0 +1,15 @@
+rf_classifier = RandomForestClassifier()
+
+parametrs_fr = {'max_depth':[3, 5, 10],
+                'n_estimators':[150, 200, 300],
+                'min_samples_split': [2, 5, 10],
+                'min_samples_leaf': [1, 2, 4]}
+
+grid_search_reg_forest3 = GridSearchCV(rf_classifier, parametrs_fr, cv = 5)
+
+grid_search_reg_forest3.fit(X_train, y_train)
+
+grid_search_reg_forest3.best_params_
+best_gs_rf = grid_search_reg_forest3.best_estimator_
+print('Score on train data = ', round(best_gs_rf.score(X_train, y_train), 4))
+print('Score on test data = ', round(best_gs_rf.score(X_test, y_test), 4))
